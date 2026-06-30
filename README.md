@@ -102,6 +102,7 @@ The application is designed to be:
 - **Secure**: Protected with password hashing and input validation
 - **Maintainable**: Well-organized, documented code
 - **Extensible**: Modular design for easy feature additions
+- **Friendly**: system is responsive and workable making buttons working.
 
 ## 💻 System Requirements
 
