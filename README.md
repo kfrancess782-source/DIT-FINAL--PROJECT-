@@ -1,328 +1,383 @@
-# Attendance Tracking and Management System
-
-A professional desktop-based Attendance Tracking and Management System built with Python Tkinter and SQLite. Perfect for educational institutions, businesses, and organizations that need to efficiently manage and track attendance records.
-
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Project Overview](#project-overview)
-- [System Requirements](#system-requirements)
-- [Quick Start](#quick-start)
-- [Documentation](#documentation)
-- [Project Structure](#project-structure)
-- [Technologies Used](#technologies-used)
-- [License](#license)
-- [Contributing](#contributing)
-
-## ✨ Features
-
-### Core Features Implemented
-
-#### 🔐 Security & Authentication
-- Secure login system with username/password authentication
-- Password hashing using bcrypt for maximum security
-- Role-based access control (Admin, Staff)
-- Session management
-- Forgot password functionality with reset capability
-
-#### 📊 Dashboard
-- Real-time attendance statistics
-  - Total registered members
-  - Members present today
-  - Members absent today
-- Recent attendance records (last 30 entries)
-- Current date and time display
-- Auto-updating dashboard
-
-#### 👥 Member Management
-- Complete CRUD operations (Create, Read, Update, Delete)
-- Add new members with validation
-- Update member information
-- Delete member records
-- Search and filter members by ID, name, or department
-- Field validation:
-  - Email format validation
-  - Phone number validation
-  - Unique ID enforcement
-  - Required field validation
-
-#### ✅ Attendance Marking
-- Mark attendance with multiple status options
-  - Present
-  - Absent
-  - Late
-  - Excused
-- Automatic timestamp recording
-- Duplicate attendance prevention (one entry per member per day)
-- Quick selection interface
-- Today's attendance view
-
-#### 📈 Reports & Analytics
-- Visual pie charts for today's attendance
-- Attendance statistics breakdown
-- Member-wise attendance history
-- Data-driven insights
-
-#### ⚙️ Settings & Administration
-- Create new user accounts with role assignment
-- Change password functionality
-- Database backup feature
-- Restore database from backups
-- Administrative control panel
-
-### Future Enhancement Areas
-
-- [ ] CSV/Excel file import for batch member registration
-- [ ] Excel (.xlsx) export with formatted reports
-- [ ] CSV export for data analysis
-- [ ] PDF report generation
-- [ ] QR code attendance scanning
-- [ ] Barcode scanning support
-- [ ] Weekly and monthly attendance reports
-- [ ] Department-wise analytics dashboard
-- [ ] Email report notifications
-- [ ] Automatic backup scheduler
-- [ ] Dark mode / Light mode toggle
-- [ ] Face recognition (advanced)
-
-## 📖 Project Overview
-
-This system provides a complete solution for attendance tracking and management:
-
-- **Database**: SQLite for reliable data persistence
-- **Interface**: Tkinter for cross-platform GUI
-- **Security**: Bcrypt for secure password storage
-- **Data Visualization**: Matplotlib for charts and analytics
-- **Data Processing**: Pandas for attendance analysis
-- **Export**: Support for multiple formats (Excel, CSV)
-
-The application is designed to be:
-- **User-friendly**: Intuitive interface for easy adoption
-- **Scalable**: Can handle large numbers of members and records
-- **Secure**: Protected with password hashing and input validation
-- **Maintainable**: Well-organized, documented code
-- **Extensible**: Modular design for easy feature additions
-- **Friendly**: system is responsive and workable making buttons working.
-
-## 💻 System Requirements
-
-- **Python**: 3.8 or higher
-- **Operating System**: Windows, macOS, or Linux
-- **RAM**: Minimum 512 MB
-- **Disk Space**: ~100 MB for installation and database
-- **GUI Framework**: Tkinter (included with Python)
-
-## 🚀 Quick Start
-
-### Installation
-
-1. **Clone or Download** the project:
-```bash
-cd path/to/project
-```
-
-2. **Create Virtual Environment**:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. **Install Dependencies**:
-```bash
-pip install -r requirements.txt
-```
-
-4. **Run Application**:
-```bash
-python main.py
-```
-
-### Default Credentials
-
-- **Username**: `admin`
-- **Password**: `admin123`
-
-⚠️ **Important**: Change the default password on first login through the Settings module.
-
-### Detailed Installation
-
-For comprehensive installation instructions, see [INSTALLATION.md](INSTALLATION.md)
-
-## 📚 Documentation
-
-### For Users
-- [USER_GUIDE.md](USER_GUIDE.md) - Complete user manual with step-by-step instructions for all features
-
-### For Developers
-- [INSTALLATION.md](INSTALLATION.md) - Technical installation and troubleshooting guide
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Guidelines for contributing to the project
-- [LICENSE](LICENSE) - MIT License
-
-### Quick Links
-- **How to install?** → See [INSTALLATION.md](INSTALLATION.md)
-- **How to use the app?** → See [USER_GUIDE.md](USER_GUIDE.md)
-- **How to contribute?** → See [CONTRIBUTING.md](CONTRIBUTING.md)
-
-## 📁 Project Structure
-
-```
-attendance-system/
-│
-├── main.py                          # Application entry point
-│
-├── database/
-│   ├── __init__.py
-│   ├── database.py                  # Database layer (SQLite, CRUD operations)
-│   └── attendance.db                # SQLite database (auto-created)
-│
-├── gui/
-│   ├── __init__.py
-│   ├── login.py                     # Login window and main application
-│   ├── dashboard.py                 # Dashboard view
-│   ├── members.py                   # Member management interface
-│   ├── attendance.py                # Attendance marking interface
-│   ├── reports.py                   # Reports and analytics
-│   └── settings.py                  # Settings and administration
-│
-├── backups/                         # Database backups directory
-├── exports/                         # Export files directory
-│
-├── requirements.txt                 # Python dependencies
-├── setup.py                         # Package setup file
-├── README.md                        # This file
-├── INSTALLATION.md                  # Installation guide
-├── USER_GUIDE.md                    # User manual
-├── CONTRIBUTING.md                  # Contributing guidelines
-├── LICENSE                          # MIT License
-└── .gitignore                       # Git ignore file
-```
-
-## 🛠️ Technologies Used
-
-| Technology | Purpose | Version |
-|-----------|---------|---------|
-| Python | Programming Language | 3.8+ |
-| Tkinter | GUI Framework | Included |
-| SQLite | Database | 3.x |
-| Bcrypt | Password Hashing | Latest |
-| Pandas | Data Analysis | Latest |
-| Matplotlib | Data Visualization | Latest |
-| OpenPyXL | Excel Support | Latest |
-| ReportLab | PDF Generation | Latest |
-
-## 🔒 Security Features
-
-- **Password Hashing**: Bcrypt algorithm for secure password storage
-- **Input Validation**: All user inputs are validated
-- **SQL Injection Prevention**: Parameterized queries throughout
-- **Access Control**: Role-based permissions (Admin/Staff)
-- **Session Management**: Secure login/logout functionality
-- **Data Integrity**: SQLite constraints and validation
-
-## 📝 Database Schema
-
-### Users Table
-```sql
-users (
-    user_id INTEGER PRIMARY KEY,
-    username TEXT UNIQUE,
-    password TEXT (bcrypt hash),
-    role TEXT
-)
-```
-
-### Members Table
-```sql
-members (
-    id INTEGER PRIMARY KEY,
-    member_id TEXT UNIQUE,
-    full_name TEXT,
-    gender TEXT,
-    department TEXT,
-    email TEXT,
-    phone TEXT,
-    date_registered TEXT
-)
-```
-
-### Attendance Table
-```sql
-attendance (
-    attendance_id INTEGER PRIMARY KEY,
-    member_id TEXT,
-    full_name TEXT,
-    department TEXT,
-    status TEXT,
-    attendance_date TEXT,
-    attendance_time TEXT
-)
-```
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-**Issue**: `ModuleNotFoundError: No module named 'tkinter'`
-- **Solution**: See [INSTALLATION.md](INSTALLATION.md#troubleshooting)
-
-**Issue**: Cannot connect to database
-- **Solution**: Ensure `database/` folder has write permissions
-
-**Issue**: Login fails with correct credentials
-- **Solution**: Restart the application and clear browser cache (if using web version)
-
-For more troubleshooting, see [INSTALLATION.md](INSTALLATION.md#troubleshooting)
-
-## 📞 Support & Help
-
-1. **Read the Documentation**: Check [USER_GUIDE.md](USER_GUIDE.md) and [INSTALLATION.md](INSTALLATION.md)
-2. **Common Issues**: See troubleshooting section above
-3. **Report Bugs**: Create an issue with detailed information
-4. **Feature Requests**: Open an issue with your suggestions
-
-## 🤝 Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
-- Bug reporting guidelines
-- Feature request process
-- Code contribution standards
-- Development setup
-
-## 📄 License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🎯 Roadmap
-
-### Version 1.0 (Current)
-- ✅ Core attendance management
-- ✅ Member CRUD operations
-- ✅ Login system
-- ✅ Basic reporting
-
-### Version 1.1 (Planned)
-- 📅 Excel/CSV import functionality
-- 📅 PDF report export
-- 📅 Email notifications
-- 📅 Enhanced analytics
-
-### Version 2.0 (Future)
-- 📅 QR code scanning
-- 📅 Face recognition
-- 📅 Mobile app integration
-- 📅 Cloud backup
-
-## 👥 Credits
-
-Developed as a professional attendance management solution for educational institutions and businesses.
-
-## 📧 Contact
-
-For questions or feedback, please contact the development team.
-
----
-
-**Version**: 1.0  
-**Last Updated**: June 2026  
-**Status**: Active Development  
-**License**: MIT
+🌟 Why Choose This System?
+
+Unlike traditional paper attendance registers or spreadsheet-based attendance management, this system provides a complete digital solution that improves efficiency, transparency, and data accuracy.
+
+Benefits
+Eliminates manual attendance errors
+Reduces paperwork
+Provides instant attendance reports
+Improves staff productivity
+Secure data storage
+Fast member search
+Easy report generation
+Reliable backup system
+User-friendly interface
+Professional desktop application
+🎯 Objectives
+
+The major objectives of this project include:
+
+Primary Objectives
+Develop a secure attendance management system.
+Replace manual attendance recording.
+Improve attendance monitoring.
+Provide real-time attendance statistics.
+Generate professional attendance reports.
+Store attendance records securely.
+Simplify member registration.
+Improve organizational efficiency.
+Secondary Objectives
+Maintain historical attendance records.
+Provide role-based user access.
+Enable database backup and recovery.
+Allow data export for external analysis.
+Reduce operational costs.
+🎓 Target Users
+
+This application can be used by various organizations.
+
+Educational Institutions
+Universities
+Colleges
+Secondary Schools
+Primary Schools
+Vocational Institutes
+Businesses
+Private Companies
+Government Offices
+NGOs
+Corporate Organizations
+Banks
+Religious Organizations
+Churches
+Mosques
+Ministries
+Other Organizations
+Training Centers
+Event Organizers
+Clubs
+Community Organizations
+🏗️ Software Architecture
+
+The application follows a modular layered architecture.
+
++------------------------------------------------+
+|                User Interface                  |
+|                  (Tkinter GUI)                 |
++------------------------------------------------+
+                    |
+                    V
++------------------------------------------------+
+|              Business Logic Layer              |
+| Validation | Authentication | Reports | CRUD   |
++------------------------------------------------+
+                    |
+                    V
++------------------------------------------------+
+|               Database Layer                   |
+|             SQLite Database Engine             |
++------------------------------------------------+
+
+Advantages include:
+
+Loose coupling
+Easy maintenance
+High scalability
+Better testing
+Improved organization
+🔄 System Workflow
+
+The complete workflow of the application is shown below.
+
+Start
+   │
+   ▼
+Login
+   │
+   ▼
+Dashboard
+   │
+   ├──────────────┐
+   │              │
+Members      Attendance
+   │              │
+   ▼              ▼
+Reports      Settings
+   │
+   ▼
+Export Reports
+   │
+   ▼
+Logout
+📊 Functional Modules
+
+The system is divided into six major modules.
+
+1. Authentication Module
+
+Responsibilities:
+
+User Login
+Password Verification
+Session Management
+Logout
+Forgot Password
+2. Dashboard Module
+
+Responsibilities:
+
+Live Statistics
+Daily Attendance Overview
+Recent Activities
+Current Time
+Notifications
+3. Member Management Module
+
+Responsibilities
+
+Register Members
+Update Members
+Delete Members
+Search Members
+View Member History
+4. Attendance Module
+
+Responsibilities
+
+Mark Attendance
+Edit Attendance
+Prevent Duplicate Entries
+Daily Attendance Records
+Attendance Validation
+5. Reports Module
+
+Responsibilities
+
+Attendance Statistics
+Pie Charts
+Monthly Reports
+Department Reports
+Member Reports
+6. Settings Module
+
+Responsibilities
+
+User Management
+Backup Database
+Restore Database
+Password Management
+System Configuration
+📈 Performance Features
+
+The application has been optimized to provide excellent performance.
+
+Fast database queries
+Lightweight application
+Low RAM usage
+Quick startup
+Efficient searching
+Instant attendance updates
+Optimized data loading
+Responsive interface
+🔐 Security Best Practices
+
+The system follows modern security standards.
+
+Authentication
+Password hashing
+Secure login
+User sessions
+Role permissions
+Database Security
+Prepared SQL statements
+Database constraints
+Data validation
+Backup encryption (future)
+Input Validation
+Email verification
+Phone verification
+Empty field prevention
+Duplicate detection
+Character validation
+📊 Dashboard Widgets
+
+The dashboard contains:
+
+✅ Total Members
+
+✅ Present Today
+
+✅ Absent Today
+
+✅ Late Members
+
+✅ Excused Members
+
+✅ Attendance Percentage
+
+✅ Current Date
+
+✅ Current Time
+
+✅ Recent Attendance
+
+📤 Export Options
+
+The system supports exporting data into multiple formats.
+
+Format	Status
+CSV	✅
+Excel	✅
+PDF	Planned
+JSON	Planned
+
+Exports include:
+
+Attendance Reports
+Member Records
+Daily Reports
+Monthly Reports
+Annual Reports
+📂 Backup System
+
+The backup system automatically protects important records.
+
+Features include:
+
+Manual Backup
+Restore Backup
+Backup Verification
+Timestamped Files
+Multiple Backup Storage
+📅 Attendance Status Types
+Status	Meaning
+Present	Member attended
+Absent	Member absent
+Late	Member arrived late
+Excused	Approved absence
+📈 Attendance Analytics
+
+The reporting system provides:
+
+Daily attendance percentage
+Weekly attendance trends
+Monthly attendance trends
+Department comparison
+Member attendance history
+Attendance frequency
+Graphical analysis
+Pie charts
+Summary reports
+📚 Coding Standards
+
+The project follows professional coding practices.
+
+PEP 8 Python Style Guide
+Modular Programming
+Object-Oriented Programming
+Reusable Functions
+Error Handling
+Logging
+Documentation
+Clean Code Principles
+🧪 Testing Strategy
+
+The project has been designed with comprehensive testing in mind.
+
+Unit Testing
+
+Testing individual functions and methods.
+
+Integration Testing
+
+Testing interaction between modules.
+
+GUI Testing
+
+Testing buttons, forms, and windows.
+
+Database Testing
+
+Testing CRUD operations.
+
+User Acceptance Testing
+
+Ensuring the system meets user requirements.
+
+🚀 Future Technologies
+
+Future versions may include:
+
+Artificial Intelligence attendance prediction
+Face Recognition
+QR Code Scanner
+RFID Integration
+Fingerprint Scanner
+Cloud Database
+Online Synchronization
+Mobile Application
+SMS Notifications
+Email Notifications
+REST API
+Web Dashboard
+📦 Python Packages Used
+bcrypt
+sqlite3
+tkinter
+pandas
+matplotlib
+openpyxl
+reportlab
+Pillow
+tkcalendar
+datetime
+os
+shutil
+hashlib
+re
+logging
+📜 Project Milestones
+Phase	Status
+Planning	✅ Completed
+Requirement Analysis	✅ Completed
+System Design	✅ Completed
+Database Design	✅ Completed
+GUI Development	✅ Completed
+Member Management	✅ Completed
+Attendance Module	✅ Completed
+Reports Module	✅ Completed
+Settings Module	✅ Completed
+Testing	🔄 Ongoing
+Documentation	🔄 Ongoing
+Deployment	Planned
+💡 Best Practices for Users
+
+To ensure optimal performance:
+
+Backup the database regularly.
+Change the default administrator password immediately after installation.
+Avoid sharing administrator credentials.
+Keep exported reports securely stored.
+Update member records whenever changes occur.
+Verify attendance records daily.
+Restore from backups only when necessary.
+📖 Frequently Asked Questions (FAQ)
+Can multiple users use the application?
+
+Yes. Administrators can create multiple staff accounts with role-based permissions.
+
+Does the application require an internet connection?
+
+No. It is fully offline and desktop-based.
+
+Is the database secure?
+
+Yes. Passwords are hashed using bcrypt, and database operations use parameterized SQL queries to help prevent SQL injection.
+
+Can attendance be edited?
+
+Yes. Authorized administrators can update attendance records when corrections are required.
+
+Can reports be exported?
+
+Yes. Excel and CSV exports are supported, with PDF export planned for future releases.
